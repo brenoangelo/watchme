@@ -1,23 +1,30 @@
-import { Button } from "./Button";
+import { memo } from 'react';
+import { Button } from './Button';
 
 interface SideBarProps {
   genres: Array<{
     id: number;
     name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
     title: string;
-  }>,
-  handleClickButton: (id: number) => void,
+  }>;
+  handleClickButton: (id: number) => void;
   selectedGenreId: number;
 }
 
-export function SideBar({ genres, handleClickButton, selectedGenreId }: SideBarProps) {
-  // Complete aqui
+function SideBarComponent({
+  genres,
+  handleClickButton,
+  selectedGenreId,
+}: SideBarProps) {
+
   return (
     <nav className="sidebar">
-      <span>Watch<p>Me</p></span>
+      <span>
+        Watch<p>Me</p>
+      </span>
 
       <div className="buttons-container">
-        {genres.map(genre => (
+        {genres.map((genre) => (
           <Button
             key={String(genre.id)}
             title={genre.title}
@@ -28,6 +35,7 @@ export function SideBar({ genres, handleClickButton, selectedGenreId }: SideBarP
         ))}
       </div>
     </nav>
-  )
-
+  );
 }
+
+export const SideBar = memo(SideBarComponent)
